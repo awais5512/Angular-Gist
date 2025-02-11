@@ -1,0 +1,10 @@
+<div class="toggle-view">
+  <button
+    *ngFor="let option of options"
+    (click)="setView(option.label)"
+    [class.active]="viewMode === option.label"
+    attr.aria-label="{{ option.label }}"
+  >
+    <img src="{{ option.icon }}" alt="{{ option.label }}" />
+  </button>
+</div>

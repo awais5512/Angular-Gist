@@ -1,6 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap");
+
+:root {
+  --base-color: #fff;
+  --base-color-2: #e3e3e3;
+  --base-color-3: #efefef;
+  --primary-color: #003b44;
+
+  --base-accent: #3d3d3d;
+
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  --size-sm: 1rem;
+  --size-md: 1.5rem;
+  --size-lg: 2rem;
+  --size-xl: 3rem;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: "Inter", serif;
+  background-color: var(--base-color);
+  color: var(--base-accent);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
 }

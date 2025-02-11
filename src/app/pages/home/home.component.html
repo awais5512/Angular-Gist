@@ -1,5 +1,24 @@
 <app-page-wrapper>
-  <app-container>
-    <h1>This is home</h1>
+  <app-container className="home-container">
+    <div class="page-header">
+      <h2 class="page-title">Public Gists</h2>
+      <div class="view-toggle">
+        <app-toggle-view
+          [options]="viewOptions"
+          (viewChange)="onViewChange($event)"
+        />
+      </div>
+    </div>
+    <div class="skeletons-list" *ngIf="loadingGists; else gistsListContent">
+      <app-skeleton-loading height="70px" />
+      <app-skeleton-loading height="70px" />
+      <app-skeleton-loading height="70px" />
+    </div>
+    <ng-template #gistsListContent>
+      <div [ngSwitch]="viewMode">
+        <app-gists-table-view *ngSwitchCase="'list'" [gistsList]="gistsList" />
+        <div *ngSwitchCase="'grid'" class="gists-grid">Grid Dundundundunu</div>
+      </div>
+    </ng-template>
   </app-container>
 </app-page-wrapper>

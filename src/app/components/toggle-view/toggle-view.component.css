@@ -1,0 +1,19 @@
+.toggle-view {
+  display: flex;
+  border: 1px solid var(--base-color-2);
+  width: fit-content;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+button.active {
+  background-color: var(--base-color-2);
+}

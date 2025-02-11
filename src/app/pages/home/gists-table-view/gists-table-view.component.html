@@ -1,0 +1,32 @@
+<div class="gists-table-container">
+  <table id="gists-table">
+    <tr>
+      <th>Owner</th>
+      <th>Notebook Name</th>
+      <th>Updated At</th>
+      <th></th>
+    </tr>
+    <ng-container *ngFor="let gist of gistsList; trackBy: gistIdentifier">
+      <tr>
+        <td class="gist-owner-cell">
+          <img
+            class="gist-owner-avatar"
+            src="{{ gist.owner.avatar_url }}"
+            alt="{{ gist.owner.login }}"
+          />
+          <h4>{{ gist.owner.login }}</h4>
+        </td>
+        <td>
+          {{ gist.description ? gist.description.slice(0, 10) + "..." : "N/A" }}
+        </td>
+        <td>{{ gist.updated_at }}</td>
+        <td class="gist-actions-cell">
+          <div class="actions-icons">
+            <img src="forkIcon.svg" alt="Fork" />
+            <img src="starIcon.svg" alt="Star" />
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>

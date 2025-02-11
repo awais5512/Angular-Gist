@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-container',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './container.component.html',
   styleUrl: './container.component.css',
 })
-export class ContainerComponent {}
+export class ContainerComponent {
+  @Input() className = '';
+}
