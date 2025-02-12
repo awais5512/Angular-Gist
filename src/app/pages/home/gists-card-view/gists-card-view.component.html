@@ -1,0 +1,35 @@
+<div class="gists-grid-container">
+  <a
+    [routerLink]="['/gist', gist.id]"
+    *ngFor="let gist of gistsList; trackBy: gistIdentifier"
+    class="gist-card"
+  >
+    <div class="gist-json">
+      <p>{{ gist.description }}</p>
+    </div>
+    <div class="gist-info">
+      <img
+        class="gist-owner-avatar"
+        src="{{ gist.owner.avatar_url }}"
+        alt="{{ gist.owner.login }}"
+      />
+      <div class="gist-owner">
+        <h4
+          class="gist-file"
+          title="{{ gist.owner.login }} / {{ getFirstFileName(gist.files) }}"
+        >
+          {{ gist.owner.login }} / {{ getFirstFileName(gist.files) }}
+        </h4>
+        <p class="muted-text">{{ gist.updated_at | date }}</p>
+      </div>
+      <div class="actions-icons">
+        <button>
+          <img src="forkIcon.svg" alt="Fork" />
+        </button>
+        <button>
+          <img src="starIcon.svg" alt="Star" />
+        </button>
+      </div>
+    </div>
+  </a>
+</div>

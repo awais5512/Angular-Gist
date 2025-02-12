@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { routes } from './app.routes';
 import { HeaderModule } from './components/header/header.module';
+import { GistDetailsModule } from './pages/gist-details/gist-details.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { HeaderModule } from './components/header/header.module';
     BrowserModule,
     RouterModule.forRoot(routes),
     HomeModule,
+    GistDetailsModule,
     HeaderModule,
   ],
   bootstrap: [AppComponent],

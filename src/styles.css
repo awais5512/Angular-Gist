@@ -6,7 +6,8 @@
   --base-color-3: #efefef;
   --primary-color: #003b44;
 
-  --base-accent: #3d3d3d;
+  --base-accent: #003b44;
+  --muted-text: #7a7a7a;
 
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -17,6 +18,11 @@
   --size-md: 1.5rem;
   --size-lg: 2rem;
   --size-xl: 3rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 2rem;
 }
 
 * {
@@ -55,4 +61,8 @@ h4 {
   text-decoration: none;
   text-align: center;
   cursor: pointer;
+}
+
+.text-muted {
+  color: var(--muted-text);
 }

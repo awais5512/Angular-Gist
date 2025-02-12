@@ -1,0 +1,42 @@
+<app-page-wrapper>
+  <app-container class="gist-details-container">
+    <div *ngIf="loading">Loading Gist Details...</div>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div *ngIf="gist">
+      <div class="gist-header">
+        <div class="header-left">
+          <img
+            class="owner-avatar"
+            [src]="gist.owner.avatar_url"
+            [alt]="gist.owner.login"
+          />
+          <article class="owner-info">
+            <h3>{{ gist.owner.login }}</h3>
+            <div>
+              <p class="text-muted">{{ gist.created_at | date }}</p>
+              <p class="text-muted">
+                {{ gist.description || "No description available" }}
+              </p>
+            </div>
+          </article>
+        </div>
+        <div class="header-right"></div>
+      </div>
+
+      <div class="gist-files">
+        <div *ngFor="let file of gist.files | keyvalue">
+          <div class="gist-file">
+            <div class="gist-file-header">
+              <h4>{{ file.value.filename }}</h4>
+            </div>
+            <div class="gist-file-content">
+              <p>Type: {{ file.value.type || "Unknown" }}</p>
+              <a [href]="file.value.raw_url" target="_blank">View Raw</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-container>
+</app-page-wrapper>

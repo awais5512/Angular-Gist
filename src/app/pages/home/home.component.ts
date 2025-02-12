@@ -17,14 +17,12 @@ export class HomeComponent implements OnInit {
   viewMode: string = 'list';
 
   viewOptions = [
-    { label: 'list', icon: '/tableIcon.svg' },
-    { label: 'grid', icon: '/listIcon.svg' },
+    { label: 'list', icon: '/listIcon.svg' },
+    { label: 'grid', icon: '/tableIcon.svg' },
   ];
 
   onViewChange(mode: string) {
-    console.log('got view', mode);
     this.viewMode = mode;
-    console.log(this.viewMode);
   }
 
   ngOnInit() {

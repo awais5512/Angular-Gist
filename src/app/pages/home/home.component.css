@@ -5,9 +5,3 @@
   justify-content: space-between;
   gap: var(--spacing-sm);
 }
-
-.skeletons-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
