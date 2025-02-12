@@ -4,13 +4,31 @@
       <a routerLink="/">
         <img src="emumbaLogo.svg" alt="Emumba Logo" />
       </a>
-      <ul>
+      <ul *ngIf="!isLoggedIn; else userMenu">
         <li>
           <button class="btn">
             <a routerLink="login">Login</a>
           </button>
         </li>
       </ul>
+      <ng-template #userMenu>
+        <div class="user-menu">
+          <img
+            class="avatar"
+            src="https://i.pravatar.cc/150?img=3"
+            alt="User"
+            (click)="toggleMenu()"
+          />
+          <div class="dropdown" *ngIf="menuOpen" onclick="toggleMenu()">
+            <div class="links">
+              <a class="link" routerLink="gist/12" (click)="toggleMenu()"
+                >Profile</a
+              >
+              <button class="btn" (click)="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </nav>
   </app-container>
 </header>

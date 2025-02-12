@@ -14,3 +14,45 @@ ul {
   list-style: none;
   gap: 1rem;
 }
+
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: var(--base-color);
+  border-radius: 4px;
+  padding: var(--spacing-sm);
+  min-width: 150px;
+  z-index: 100;
+  cursor: default;
+  box-shadow: 0px 10px 15px 5px #0000000d;
+}
+
+.dropdown .links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.dropdown .link {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown .link:hover {
+  text-decoration: underline;
+}

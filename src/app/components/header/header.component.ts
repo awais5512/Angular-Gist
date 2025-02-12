@@ -8,4 +8,25 @@ import { Component, signal } from '@angular/core';
 })
 export class HeaderComponent {
   title = signal('DEMO-LOGO');
+
+  isLoggedIn = true;
+  menuOpen = false;
+
+  // constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    // this.authService.getUser().subscribe((userData) => {
+    //   this.isLoggedIn = !!userData;
+    //   this.user = userData;
+    // });
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  logout() {
+    // this.authService.logout();
+    this.menuOpen = false;
+  }
 }
