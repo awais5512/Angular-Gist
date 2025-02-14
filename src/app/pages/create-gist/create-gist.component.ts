@@ -7,6 +7,10 @@ import { CreateFile, CreateGist } from '../../types/gists.types';
 import { SharedLayoutsModule } from '../../components/layouts/layouts.module';
 import { PageWrapperModule } from '../../components/layouts/page-wrapper/page-wrapper.module';
 
+interface FileInfo {
+  filename: string;
+  content: string;
+}
 @Component({
   imports: [CommonModule, FormsModule, SharedLayoutsModule, PageWrapperModule],
   templateUrl: './create-gist.component.html',
@@ -14,11 +18,9 @@ import { PageWrapperModule } from '../../components/layouts/page-wrapper/page-wr
 })
 export class CreateGistComponent implements OnInit {
   description = '';
-  files: { filename: string; content: string }[] = [
-    { filename: '', content: '' },
-  ];
   isLoading = false;
   error: string | null = '';
+  files: FileInfo[] = [{ filename: '', content: '' }];
 
   constructor(private gistService: GistsService) {}
 

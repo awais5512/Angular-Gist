@@ -6,7 +6,7 @@
       <th>Updated At</th>
       <th></th>
     </tr>
-    <ng-container *ngFor="let gist of gistsList; trackBy: gistIdentifier">
+    <ng-container *ngFor="let gist of paginatedGists; trackBy: gistIdentifier">
       <tr>
         <td class="gist-owner-cell">
           <img
@@ -33,4 +33,11 @@
       </tr>
     </ng-container>
   </table>
+  <app-pagination
+    [items]="gistsList"
+    [itemsPerPage]="itemsPerPage"
+    [currentPage]="currentPage"
+    (paginatedItems)="onPaginatedItems($event)"
+    (pageChanged)="onPageChange($event)"
+  />
 </div>
