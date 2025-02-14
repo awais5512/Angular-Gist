@@ -58,6 +58,7 @@ export class CreateGistComponent implements OnInit {
         this.isLoading = false;
         this.description = '';
         this.files = [{ filename: '', content: '' }];
+        alert('Gist created Successfully');
       },
       error: () => {
         this.error = 'Failed to create gist. Please try again.';
