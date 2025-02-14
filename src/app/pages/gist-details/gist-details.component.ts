@@ -28,7 +28,6 @@ export class GistDetailsComponent {
   fetchGistDetails() {
     this.gistService.getGistByID(this.gistId).subscribe({
       next: (gist) => {
-        // console.log(gist);
         this.gist = gist;
       },
       error: (error) => {

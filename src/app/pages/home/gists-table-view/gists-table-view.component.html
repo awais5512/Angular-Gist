@@ -22,8 +22,12 @@
         <td>{{ gist.updated_at }}</td>
         <td class="gist-actions-cell">
           <div class="actions-icons">
-            <img src="forkIcon.svg" alt="Fork" />
-            <img src="starIcon.svg" alt="Star" />
+            <button (click)="onForkGist(gist.id)">
+              <img src="forkIcon.svg" alt="Fork" />
+            </button>
+            <button (click)="onStarGist(gist.id)">
+              <img src="starIcon.svg" alt="Star" />
+            </button>
           </div>
         </td>
       </tr>

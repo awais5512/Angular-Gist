@@ -1,0 +1,44 @@
+<app-page-wrapper>
+  <app-container>
+    <form class="gist-form" (submit)="createGist()">
+      <input
+        type="text"
+        name="file-description"
+        [(ngModel)]="description"
+        placeholder="Gist description..."
+      />
+      <div *ngFor="let file of files; let i = index" class="file-block">
+        <input
+          type="text"
+          name="filename"
+          [(ngModel)]="file.filename"
+          placeholder="Filename"
+          required
+        />
+        <textarea
+          [(ngModel)]="file.content"
+          name="file-content"
+          placeholder="File content"
+        ></textarea>
+        <button
+          *ngIf="files.length > 1"
+          type="button"
+          (click)="removeFile(i)"
+          class="btn remove-btn"
+        >
+          Remove
+        </button>
+      </div>
+
+      <div class="action-btns">
+        <button type="button" (click)="addFile()" class="btn add-btn">
+          + Add another file
+        </button>
+        <button type="submit" [disabled]="isLoading" class="btn primary">
+          {{ isLoading ? "Creating..." : "Create Gist" }}
+        </button>
+        <p *ngIf="error" class="error">{{ error }}</p>
+      </div>
+    </form>
+  </app-container>
+</app-page-wrapper>

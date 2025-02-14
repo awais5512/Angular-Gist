@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Gist } from '../types/gists.types';
+import { CreateGist, Gist } from '../types/gists.types';
 import {
+  CREATE_GIST,
   DELETE_GIST,
   FORK_GIST,
   GET_GIST_BY_ID,
@@ -30,9 +31,9 @@ export class GistsService {
     return this.http.get<Gist[]>(GET_USER_GISTS);
   }
 
-  // createGist(Gist: CreateGist): Observable<Gist> {
-  //   return this.http.post<Gist>(GistEndPoints.CREATE_GIST, Gist);
-  // }
+  createGist(gist: CreateGist): Observable<Gist> {
+    return this.http.post<Gist>(CREATE_GIST, gist);
+  }
 
   deleteGist(gistID: string): Observable<void> {
     return this.http.delete<void>(DELETE_GIST(gistID));
@@ -46,18 +47,16 @@ export class GistsService {
   // }
 
   starGist(gistID: string): Observable<void> {
-    return this.http.put<void>(STAR_UNSTAR_GIST(gistID), {
-      gist_id: gistID,
-    });
+    return this.http.put<void>(STAR_UNSTAR_GIST(gistID), { gist_id: gistID });
   }
 
   getStarredGists(): Observable<Gist[]> {
     return this.http.get<Gist[]>(GET_STARRED_GISTS);
   }
 
-  isGistStarred(gistID: string): Observable<any> {
-    return this.http.get<void>(STAR_UNSTAR_GIST(gistID));
-  }
+  // isGistStarred(gistID: string): Observable<any> {
+  //   return this.http.get<void>(STAR_UNSTAR_GIST(gistID));
+  // }
 
   forkGist(gistID: string): Observable<Gist> {
     return this.http.post<Gist>(FORK_GIST(gistID), { gist_id: gistID });

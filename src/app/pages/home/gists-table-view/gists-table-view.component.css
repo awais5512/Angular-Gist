@@ -46,9 +46,15 @@
 
 .actions-icons {
   display: flex;
+  align-items: center;
   gap: var(--spacing-md);
 }
 
-.actions-icons img:hover {
+.actions-icons button {
+  all: unset;
   cursor: pointer;
+}
+
+.actions-icons button:hover {
+  opacity: 0.7;
 }

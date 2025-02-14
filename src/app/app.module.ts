@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from './pages/home/home.module';
 import { AppComponent } from './app.component';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { routes } from './app.routes';
 import { HeaderModule } from './components/header/header.module';
 import { GistDetailsModule } from './pages/gist-details/gist-details.module';
+import { authInterceptor } from './auth.interceptor';
+import { GistUserProfileModule } from './pages/gist-user-profile/gist-user-profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,11 +17,12 @@ import { GistDetailsModule } from './pages/gist-details/gist-details.module';
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes),
+    HeaderModule,
     HomeModule,
     GistDetailsModule,
-    HeaderModule,
+    GistUserProfileModule,
   ],
   bootstrap: [AppComponent],
-  providers: [provideHttpClient()],
+  providers: [provideHttpClient(withInterceptors([authInterceptor]))],
 })
 export class AppModule {}

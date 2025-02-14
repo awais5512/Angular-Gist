@@ -1,3 +1,5 @@
+import { User } from 'firebase/auth';
+
 export interface Gist {
   url: string;
   forks_url: string;
@@ -48,4 +50,22 @@ export interface GistOwner {
   type: string;
   user_view_type: string;
   site_admin: boolean;
+}
+
+export interface CreateFile {
+  [filename: string]: { content: string };
+}
+
+export interface CreateGist {
+  description: string;
+  public: boolean;
+  files: CreateFile;
+}
+
+export interface ExtendedFirebaseUser extends User {
+  reloadUserType: {
+    displayName: string;
+    screenName: string;
+    photoUrl: string;
+  };
 }

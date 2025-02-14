@@ -1,6 +1,7 @@
 header {
   background-color: var(--primary-color);
   padding: 1rem 0;
+  min-height: 70px;
 }
 
 header nav {
@@ -36,23 +37,30 @@ ul {
   background-color: var(--base-color);
   border-radius: 4px;
   padding: var(--spacing-sm);
-  min-width: 150px;
+  min-width: 200px;
   z-index: 100;
   cursor: default;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
   box-shadow: 0px 10px 15px 5px #0000000d;
 }
 
 .dropdown .links {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
 }
 
 .dropdown .link {
   cursor: pointer;
   font-size: 14px;
+  padding: 4px;
+  border: 1px solid var(--base-color-3);
+  transition: all 0.3s ease;
 }
 
 .dropdown .link:hover {
-  text-decoration: underline;
+  background-color: var(--base-color-3);
+  color: var(--base-accent);
 }

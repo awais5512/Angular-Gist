@@ -1,0 +1,31 @@
+.gist-form {
+  max-width: 600px;
+  margin: var(--spacing-lg) auto;
+}
+
+.file-block {
+  margin-block: var(--spacing-md);
+  display: flex;
+  background: var(--base-color-3);
+  border: 1px solid var(--base-color-2);
+  flex-direction: column;
+  border-radius: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  gap: var(--spacing-sm);
+}
+
+.remove-btn {
+  background: #dc3545;
+}
+
+.add-btn {
+  background: #28a745;
+  color: white;
+}
+
+.action-btns {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+  justify-content: space-between;
+}

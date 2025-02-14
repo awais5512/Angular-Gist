@@ -4,10 +4,10 @@
       <a routerLink="/">
         <img src="emumbaLogo.svg" alt="Emumba Logo" />
       </a>
-      <ul *ngIf="!isLoggedIn; else userMenu">
+      <ul *ngIf="!isAuthenticated(); else userMenu">
         <li>
           <button class="btn">
-            <a routerLink="login">Login</a>
+            <a routerLink="login" (click)="loginWithGitHub()">Login</a>
           </button>
         </li>
       </ul>
@@ -15,17 +15,25 @@
         <div class="user-menu">
           <img
             class="avatar"
-            src="https://i.pravatar.cc/150?img=3"
-            alt="User"
+            src="{{ user?.photoURL }}"
+            alt="{{ user?.displayName }}"
             (click)="toggleMenu()"
           />
           <div class="dropdown" *ngIf="menuOpen" onclick="toggleMenu()">
+            <h4>{{ user?.displayName }}</h4>
             <div class="links">
-              <a class="link" routerLink="gist/12" (click)="toggleMenu()"
-                >Profile</a
+              <a
+                class="link"
+                routerLink="gist-user-profile"
+                (click)="toggleMenu()"
               >
-              <button class="btn" (click)="logout()">Logout</button>
+                Profile
+              </a>
+              <a class="link" routerLink="gist/create" (click)="toggleMenu()">
+                Create Gist
+              </a>
             </div>
+            <button class="btn" (click)="logout()">Logout</button>
           </div>
         </div>
       </ng-template>

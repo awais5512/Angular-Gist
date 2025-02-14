@@ -1,0 +1,39 @@
+.gist-profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+  gap: var(--spacing-md);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: 20px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.user-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.gists-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.gists-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}

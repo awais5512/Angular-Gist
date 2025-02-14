@@ -1,0 +1,47 @@
+<app-page-wrapper>
+  <app-container>
+    <div *ngIf="isLoading; else userProfile">
+      <app-skeleton-loading height="100px" />
+    </div>
+    <ng-template #userProfile>
+      <div class="gist-profile" *ngIf="user">
+        <div class="user-info">
+          <img
+            [src]="user.photoURL || 'default-avatar.png'"
+            [alt]="user.displayName"
+            class="user-avatar"
+          />
+          <div class="user-details">
+            <h2>{{ user.displayName }}</h2>
+            <p class="muted-text">{{ user.email }}</p>
+          </div>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            [href]="'https://github.com/' + getScreenName(user)"
+          >
+            <button class="btn primary">View Github Profile</button>
+          </a>
+        </div>
+
+        <div class="gists-list">
+          <h2>Your Gists</h2>
+
+          <div
+            class="gists-cards"
+            *ngIf="!isLoading && gists.length; else noGists"
+          >
+            <app-gist-card
+              *ngFor="let gist of gists; trackBy: gistIdentifier"
+              [gist]="gist"
+            />
+          </div>
+
+          <ng-template #noGists>
+            <p>No gists found.</p>
+          </ng-template>
+        </div>
+      </div>
+    </ng-template>
+  </app-container>
+</app-page-wrapper>

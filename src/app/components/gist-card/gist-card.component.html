@@ -1,0 +1,29 @@
+<a [routerLink]="['/gist', gist.id]" class="gist-card">
+  <div class="gist-json">
+    <p>{{ gist.description || "No description" }}</p>
+  </div>
+  <div class="gist-info">
+    <img
+      class="gist-owner-avatar"
+      [src]="gist.owner.avatar_url"
+      [alt]="gist.owner.login"
+    />
+    <div class="gist-owner">
+      <h4
+        class="gist-file"
+        [title]="gist.owner.login + ' / ' + getFirstFileName(gist.files)"
+      >
+        {{ gist.owner.login }} / {{ getFirstFileName(gist.files) }}
+      </h4>
+      <p class="muted-text">{{ gist.updated_at | date }}</p>
+    </div>
+    <div class="actions-icons">
+      <button (click)="onFork($event)">
+        <img src="forkIcon.svg" alt="Fork" />
+      </button>
+      <button (click)="onStar($event)">
+        <img src="starIcon.svg" alt="Star" />
+      </button>
+    </div>
+  </div>
+</a>
