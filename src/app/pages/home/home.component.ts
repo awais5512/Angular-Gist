@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
   }
 
   onForkGist(gistID: string) {
-    console.log(gistID);
     this.gistStatus = 'forking';
     this.gistsService.forkGist(gistID).subscribe({
       next: () => {
