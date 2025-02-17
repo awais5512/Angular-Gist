@@ -1,5 +1,6 @@
 <app-page-wrapper>
   <app-container>
+    <h2>Create Gist</h2>
     <form class="gist-form" (submit)="createGist()">
       <input
         type="text"
@@ -7,34 +8,41 @@
         [(ngModel)]="description"
         placeholder="Gist description..."
       />
-      <div *ngFor="let file of files; let i = index" class="file-block">
-        <input
-          type="text"
-          name="filename"
-          [(ngModel)]="file.filename"
-          placeholder="Filename"
-          required
-        />
-        <textarea
-          [(ngModel)]="file.content"
-          name="file-content"
-          placeholder="File content"
-        ></textarea>
-        <button
-          *ngIf="files.length > 1"
-          type="button"
-          (click)="removeFile(i)"
-          class="btn remove-btn"
-        >
-          Remove
-        </button>
+      <div
+        *ngFor="let file of files; trackBy: trackFileByIndex; let i = index"
+        class="file-block"
+      >
+        <div class="file-block-content">
+          <div class="file-block-header">
+            <input
+              type="text"
+              name="filename"
+              [(ngModel)]="file.filename"
+              placeholder="Filename including extension..."
+              required
+            />
+            <button
+              *ngIf="files.length > 1"
+              type="button"
+              (click)="removeFile(i)"
+              class="btn remove-btn"
+            >
+              <img src="trashIcon.svg" alt="Remove File" />
+            </button>
+          </div>
+          <textarea
+            [(ngModel)]="file.content"
+            name="file-content"
+            placeholder="File-content"
+          ></textarea>
+        </div>
       </div>
 
       <div class="action-btns">
         <button type="button" (click)="addFile()" class="btn add-btn">
           + Add another file
         </button>
-        <button type="submit" [disabled]="isLoading" class="btn primary">
+        <button type="submit" [disabled]="disableSubmit()" class="btn primary">
           {{ isLoading ? "Creating..." : "Create Gist" }}
         </button>
         <p *ngIf="error" class="error">{{ error }}</p>

@@ -26,6 +26,10 @@
   background-color: var(--base-color-3);
 }
 
+.gist-owner-name {
+  text-decoration: underline;
+}
+
 .gist-owner-cell {
   display: flex;
   align-items: center;

@@ -1,0 +1,7 @@
+<app-pagination
+  [items]="gistsList"
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage"
+  (paginatedItems)="onPaginatedItems($event)"
+  (pageChanged)="onPageChange($event)"
+/>

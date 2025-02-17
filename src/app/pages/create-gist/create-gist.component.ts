@@ -8,6 +8,7 @@ import { SharedLayoutsModule } from '../../components/layouts/layouts.module';
 import { PageWrapperModule } from '../../components/layouts/page-wrapper/page-wrapper.module';
 
 interface FileInfo {
+  id: number;
   filename: string;
   content: string;
 }
@@ -16,27 +17,32 @@ interface FileInfo {
   templateUrl: './create-gist.component.html',
   styleUrl: './create-gist.component.css',
 })
-export class CreateGistComponent implements OnInit {
+export class CreateGistComponent {
   description = '';
   isLoading = false;
   error: string | null = '';
-  files: FileInfo[] = [{ filename: '', content: '' }];
+  files: FileInfo[] = [{ id: Date.now(), filename: '', content: '' }];
 
   constructor(private gistService: GistsService) {}
 
   addFile() {
-    this.files.push({ filename: '', content: '' });
+    this.files.push({ id: Date.now(), filename: '', content: '' });
   }
 
-  ngOnInit() {
-    this.gistService.getUserGists().subscribe({
-      next: (gists) => console.log('Gists:', gists),
-      error: (err) => console.error('Error fetching gists', err),
-    });
+  disableSubmit() {
+    return (
+      !this.description.trim() ||
+      this.isLoading ||
+      !this.files.some((file) => file.filename.trim() && file.content.trim())
+    );
   }
 
   removeFile(index: number) {
     this.files.splice(index, 1);
+  }
+
+  trackFileByIndex(index: number, file: FileInfo): number {
+    return file.id;
   }
 
   createGist() {
@@ -59,7 +65,7 @@ export class CreateGistComponent implements OnInit {
       next: () => {
         this.isLoading = false;
         this.description = '';
-        this.files = [{ filename: '', content: '' }];
+        this.files = [{ id: Date.now(), filename: '', content: '' }];
         alert('Gist created Successfully');
       },
       error: () => {

@@ -1,17 +1,8 @@
 <div class="gists-grid-container">
   <app-gist-card
-    *ngFor="let gist of paginatedGists; trackBy: gistIdentifier"
+    *ngFor="let gist of gistsList; trackBy: gistIdentifier"
     [gist]="gist"
-    (fork)="onForkGist($event)"
-    (star)="onStarGist($event)"
-  />
-</div>
-<div>
-  <app-pagination
-    [items]="gistsList"
-    [itemsPerPage]="itemsPerPage"
-    [currentPage]="currentPage"
-    (paginatedItems)="onPaginatedItems($event)"
-    (pageChanged)="onPageChange($event)"
+    (fork)="forkGist.emit(gist.id)"
+    (star)="starGist.emit(gist.id)"
   />
 </div>

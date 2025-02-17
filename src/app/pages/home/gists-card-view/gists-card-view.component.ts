@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Gist, GistFile } from '../../../types/gists.types';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+import { Gist, GistFile } from '../../../types/gists.types';
 import { GistsService } from '../../../services/gists.service';
 import { GistCardModule } from '../../../components/gist-card/gist-card.module';
 import { PaginationModule } from '../../../components/pagination/pagination.module';
@@ -14,19 +15,8 @@ import { PaginationModule } from '../../../components/pagination/pagination.modu
 })
 export class GistsCardViewComponent {
   @Input() gistsList: Gist[] = [];
-  paginatedGists: Gist[] = [];
-  currentPage = 1;
-  itemsPerPage = 5;
-
-  constructor(private gistsService: GistsService) {}
-
-  onPageChange(newPage: number): void {
-    this.currentPage = newPage;
-  }
-
-  onPaginatedItems(items: Gist[]): void {
-    this.paginatedGists = items;
-  }
+  @Output() forkGist = new EventEmitter<string>();
+  @Output() starGist = new EventEmitter<string>();
 
   gistIdentifier(index: number, gist: Gist) {
     return gist.id;
@@ -34,23 +24,5 @@ export class GistsCardViewComponent {
 
   getFirstFileName(files: Record<string, GistFile>) {
     return Object.keys(files)[0] || '';
-  }
-
-  onForkGist(gistID: string) {
-    this.gistsService.forkGist(gistID).subscribe({
-      next: () => {
-        alert(`Forked a gist => ${gistID}`);
-      },
-      error: (err) => console.error('Forking failed', err),
-    });
-  }
-
-  onStarGist(gistID: string) {
-    this.gistsService.starGist(gistID).subscribe({
-      next: () => {
-        alert(`Starred a gist => ${gistID}`);
-      },
-      error: (err) => console.error('Starring failed', err),
-    });
   }
 }

@@ -7,6 +7,7 @@ import { GistsTableViewComponent } from './gists-table-view/gists-table-view.com
 import { ToggleViewModule } from '../../components/toggle-view/toggle-view.module';
 import { GistsCardViewComponent } from './gists-card-view/gists-card-view.component';
 import { GistLoadingModule } from './gists-loading/gists-loading.module';
+import { GistsPaginationModule } from './gists-pagination/gists-pagination.module';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -18,6 +19,7 @@ import { GistLoadingModule } from './gists-loading/gists-loading.module';
     ToggleViewModule,
     GistLoadingModule,
     GistsCardViewComponent,
+    GistsPaginationModule,
   ],
   exports: [HomeComponent],
 })

@@ -13,10 +13,24 @@
       <app-gists-loading />
     </ng-container>
     <ng-template #gistsListContent>
-      <div [ngSwitch]="viewMode">
-        <app-gists-table-view *ngSwitchCase="'list'" [gistsList]="gistsList" />
-        <app-gists-card-view *ngSwitchCase="'grid'" [gistsList]="gistsList" />
+      <div [ngSwitch]="viewMode" class="views-container">
+        <app-gists-table-view
+          *ngSwitchCase="'list'"
+          [gistsList]="paginatedGists"
+          (forkGist)="onForkGist($event)"
+          (starGist)="onStarGist($event)"
+        />
+        <app-gists-card-view
+          *ngSwitchCase="'grid'"
+          [gistsList]="paginatedGists"
+          (forkGist)="onForkGist($event)"
+          (starGist)="onStarGist($event)"
+        />
       </div>
+      <app-gists-pagination
+        [gistsList]="gistsList"
+        (paginatedGistsChange)="onPaginatedItemsReceived($event)"
+      />
     </ng-template>
   </app-container>
 </app-page-wrapper>

@@ -5,3 +5,7 @@
   justify-content: space-between;
   gap: var(--spacing-sm);
 }
+
+.views-container {
+  min-height: 50vh;
+}

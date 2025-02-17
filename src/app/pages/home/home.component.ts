@@ -13,8 +13,10 @@ export class HomeComponent implements OnInit {
 
   title = 'Gist Angular | Home';
   gistsList: Gist[] = [];
+  paginatedGists: Gist[] = [];
   loadingGists = true;
   viewMode: string = 'list';
+  gistStatus: string = '';
 
   viewOptions = [
     { label: 'list', icon: '/listIcon.svg' },
@@ -23,6 +25,10 @@ export class HomeComponent implements OnInit {
 
   onViewChange(mode: string) {
     this.viewMode = mode;
+  }
+
+  onPaginatedItemsReceived(items: Gist[]): void {
+    this.paginatedGists = items;
   }
 
   ngOnInit() {
@@ -35,6 +41,33 @@ export class HomeComponent implements OnInit {
       },
       complete: () => {
         this.loadingGists = false;
+      },
+    });
+  }
+
+  onForkGist(gistID: string) {
+    console.log(gistID);
+    this.gistStatus = 'forking';
+    this.gistsService.forkGist(gistID).subscribe({
+      next: () => {
+        alert(`Forked a gist => ${gistID}`);
+        this.gistStatus = '';
+      },
+      error: () => {
+        this.gistStatus = '';
+      },
+    });
+  }
+
+  onStarGist(gistID: string) {
+    this.gistStatus = 'starring';
+    this.gistsService.starGist(gistID).subscribe({
+      next: () => {
+        alert(`Starred a gist => ${gistID}`);
+        this.gistStatus = '';
+      },
+      error: () => {
+        this.gistStatus = '';
       },
     });
   }
