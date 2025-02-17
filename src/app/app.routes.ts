@@ -23,5 +23,5 @@ export const routes: Routes = [
     title: 'Create Gist',
     canActivate: [AuthGuard],
   },
-  { path: 'gist/:id', component: GistDetailsComponent },
+  { path: 'gist/:id', component: GistDetailsComponent, title: 'Gist Details' },
 ];
