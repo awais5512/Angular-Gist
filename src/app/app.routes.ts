@@ -15,6 +15,7 @@ export const routes: Routes = [
     path: 'gist-user-profile',
     component: GistUserProfileComponent,
     title: 'Gist User Profile',
+    canActivate: [AuthGuard],
   },
   {
     path: 'gist/create',
