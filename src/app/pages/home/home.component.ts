@@ -50,8 +50,9 @@ export class HomeComponent implements OnInit {
         alert(`Forked a gist => ${gistID}`);
         this.gistStatus = '';
       },
-      error: () => {
+      error: (error) => {
         this.gistStatus = '';
+        alert(error?.error?.message);
       },
     });
   }
@@ -63,8 +64,9 @@ export class HomeComponent implements OnInit {
         alert(`Starred a gist => ${gistID}`);
         this.gistStatus = '';
       },
-      error: () => {
+      error: (error) => {
         this.gistStatus = '';
+        alert(error?.error?.message);
       },
     });
   }
