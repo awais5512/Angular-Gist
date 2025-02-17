@@ -35,11 +35,9 @@ export class HomeComponent implements OnInit {
     this.gistsService.getPublicGists().subscribe({
       next: (gists) => {
         this.gistsList = gists;
+        this.loadingGists = false;
       },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {
+      error: () => {
         this.loadingGists = false;
       },
     });
