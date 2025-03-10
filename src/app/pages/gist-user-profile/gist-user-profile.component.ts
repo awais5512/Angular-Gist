@@ -3,7 +3,7 @@ import { GistsService } from '../../services/gists.service';
 import { Gist } from '../../types/gists.types';
 import { FirebaseService } from '../../services/firebase.service';
 import { User } from 'firebase/auth';
-import { finalize, Observable, of, switchMap } from 'rxjs';
+import { finalize, map, Observable, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-gist-user-profile',
@@ -24,7 +24,7 @@ export class GistUserProfileComponent {
     this.user$ = this.firebaseService.user$;
 
     this.gists$ = this.user$.pipe(
-      switchMap((user) => user ? this.gistsService.getUserGists() : of([])),
+      switchMap((user) => (user ? this.gistsService.getUserGists() : of([]))),
       finalize(() => (this.isLoading = false))
     );
   }

@@ -93,3 +93,7 @@ textarea:focus {
   outline: none;
   border: 1px solid var(--primary-color);
 }
+
+li {
+  list-style: none;
+}

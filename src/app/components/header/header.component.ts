@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { FirebaseService } from '../../services/firebase.service';
@@ -12,20 +12,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   title = signal('DEMO-LOGO');
-  user: User | null = null;
   menuOpen = false;
+  user$: Observable<User | null>;
 
   constructor(
     private firebaseService: FirebaseService,
     private router: Router
   ) {
-    this.firebaseService.user$.subscribe((updatedUser) => {
-      this.user = updatedUser;
-    });
-  }
-
-  isAuthenticated() {
-    return this.firebaseService.isAuthenticated();
+    this.user$ = this.firebaseService.user$;
   }
 
   async loginWithGitHub() {

@@ -4,38 +4,39 @@
       <a routerLink="/">
         <img src="emumbaLogo.svg" alt="Emumba Logo" />
       </a>
-      <ul *ngIf="!isAuthenticated(); else userMenu">
-        <li>
-          <button class="btn">
-            <a routerLink="login" (click)="loginWithGitHub()">Login</a>
-          </button>
-        </li>
-      </ul>
-      <ng-template #userMenu>
+
+      <!-- User is logged in -->
+      <ul *ngIf="user$ | async as user; else loginMenu">
         <div class="user-menu">
           <img
             class="avatar"
-            src="{{ user?.photoURL }}"
-            alt="{{ user?.displayName }}"
+            [src]="user?.photoURL || 'default-avatar.png'"
+            [alt]="user?.displayName"
             (click)="toggleMenu()"
           />
-          <div class="dropdown" *ngIf="menuOpen" onclick="toggleMenu()">
+          <div class="dropdown" *ngIf="menuOpen">
             <h4>{{ user?.displayName }}</h4>
             <div class="links">
               <a
                 class="link"
                 routerLink="gist-user-profile"
                 (click)="toggleMenu()"
+                >Profile</a
               >
-                Profile
-              </a>
-              <a class="link" routerLink="gist/create" (click)="toggleMenu()">
-                Create Gist
-              </a>
+              <a class="link" routerLink="gist/create" (click)="toggleMenu()"
+                >Create Gist</a
+              >
             </div>
             <button class="btn" (click)="logout()">Logout</button>
           </div>
         </div>
+      </ul>
+
+      <!-- User is not logged in -->
+      <ng-template #loginMenu>
+        <li>
+          <button class="btn" (click)="loginWithGitHub()">Login</button>
+        </li>
       </ng-template>
     </nav>
   </app-container>

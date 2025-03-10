@@ -49,6 +49,7 @@ export class FirebaseService {
 
   async signOutUser(): Promise<void> {
     localStorage.removeItem('githubAccessToken');
+    this.userSubject.next(null);
     return signOut(this.auth);
   }
 
