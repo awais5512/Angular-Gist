@@ -10,7 +10,7 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +28,7 @@ export class FirebaseService {
   }
 
   isAuthenticated() {
-    return this.userSubject.getValue() !== null;
+    return this.user$.pipe(map((user) => !!user));
   }
 
   async signInWithGitHub(): Promise<UserCredential> {
