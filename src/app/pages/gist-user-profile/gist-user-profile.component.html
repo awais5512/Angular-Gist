@@ -1,6 +1,24 @@
 <app-page-wrapper>
   <app-container>
-    <div class="gist-profile" *ngIf="user$ | async as user; else isLoading">
+    <!-- Loading state -->
+    <div class="skeleton-container" *ngIf="gistsLoading">
+      <div class="skeleton-user-info">
+        <app-skeleton-loading
+          class="skeleton-avatar"
+          height="100px"
+          width="100px"
+        />
+        <app-skeleton-loading height="20px" width="150px" />
+        <app-skeleton-loading height="20px" width="200px" />
+        <app-skeleton-loading height="40px" width="150px" />
+      </div>
+      <div class="skeleton-gists-list">
+        <app-skeleton-loading height="200px" *ngFor="let i of [1, 2, 3, 4]" />
+      </div>
+    </div>
+
+    <!-- Loaded Content -->
+    <div class="gist-profile" *ngIf="user$ | async as user">
       <div class="user-info">
         <img
           [src]="user.photoURL || 'default-avatar.png'"
@@ -20,23 +38,23 @@
         </a>
       </div>
 
+      <!-- Gists Section -->
       <div class="gists-list">
         <h2>Your Gists</h2>
 
-        <div class="gists-cards" *ngIf="gists$ | async as gists; else noGists">
-          <app-gist-card
-            *ngFor="let gist of gists; trackBy: gistIdentifier"
-            [gist]="gist"
-          />
-        </div>
+        <ng-container *ngIf="gists$ | async as gists">
+          <div *ngIf="gists.length === 0" class="empty-state">
+            <p>No gists found.</p>
+          </div>
 
-        <ng-template #noGists>
-          <p>No gists found.</p>
-        </ng-template>
+          <div class="gists-cards" *ngIf="gists.length > 0">
+            <app-gist-card
+              *ngFor="let gist of gists; trackBy: gistIdentifier"
+              [gist]="gist"
+            />
+          </div>
+        </ng-container>
       </div>
     </div>
-    <ng-template #isLoading>
-      <app-skeleton-loading height="100px" />
-    </ng-template>
   </app-container>
 </app-page-wrapper>

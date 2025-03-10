@@ -37,3 +37,30 @@
   flex-direction: column;
   gap: var(--spacing-md);
 }
+
+/* Skeleton loading styles */
+.skeleton-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+  gap: var(--spacing-md);
+}
+
+.skeleton-gists-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.skeleton-user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: 20px;
+}
+
+.skeleton-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+}

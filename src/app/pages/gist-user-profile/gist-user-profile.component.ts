@@ -3,7 +3,7 @@ import { GistsService } from '../../services/gists.service';
 import { Gist } from '../../types/gists.types';
 import { FirebaseService } from '../../services/firebase.service';
 import { User } from 'firebase/auth';
-import { finalize, map, Observable, of, switchMap } from 'rxjs';
+import { finalize, map, Observable, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-gist-user-profile',
@@ -14,7 +14,7 @@ import { finalize, map, Observable, of, switchMap } from 'rxjs';
 export class GistUserProfileComponent {
   gists$: Observable<Gist[]>;
   user$: Observable<User | null>;
-  isLoading: boolean = true;
+  gistsLoading: boolean = true;
   error: string = '';
 
   constructor(
@@ -22,10 +22,12 @@ export class GistUserProfileComponent {
     private gistsService: GistsService
   ) {
     this.user$ = this.firebaseService.user$;
-
     this.gists$ = this.user$.pipe(
-      switchMap((user) => (user ? this.gistsService.getUserGists() : of([]))),
-      finalize(() => (this.isLoading = false))
+      switchMap((user) => {
+        this.gistsLoading = true;
+        return user ? this.gistsService.getUserGists() : of([]);
+      }),
+      tap(() => (this.gistsLoading = false))
     );
   }
 
