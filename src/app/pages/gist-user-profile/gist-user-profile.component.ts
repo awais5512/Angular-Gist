@@ -3,7 +3,7 @@ import { GistsService } from '../../services/gists.service';
 import { Gist } from '../../types/gists.types';
 import { FirebaseService } from '../../services/firebase.service';
 import { User } from 'firebase/auth';
-import { finalize, map, Observable, of, switchMap, tap } from 'rxjs';
+import { Observable, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-gist-user-profile',
@@ -12,15 +12,17 @@ import { finalize, map, Observable, of, switchMap, tap } from 'rxjs';
   styleUrl: './gist-user-profile.component.css',
 })
 export class GistUserProfileComponent {
-  gists$: Observable<Gist[]>;
-  user$: Observable<User | null>;
+  gists$: Observable<Gist[]> = of([]);
+  user$: Observable<User | null> = of(null);
   gistsLoading: boolean = true;
   error: string = '';
 
   constructor(
     private firebaseService: FirebaseService,
     private gistsService: GistsService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.user$ = this.firebaseService.user$;
     this.gists$ = this.user$.pipe(
       switchMap((user) => {
